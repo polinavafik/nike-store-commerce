@@ -1,4 +1,8 @@
 /* eslint-disable no-unused-vars */
+
+import Clips from "./utils/Clips";
+import SocialLink from "./utils/SocialLink";
+
 /* eslint-disable react/prop-types */
 const Hero = ({
   heroapi: { title, subtitle, btntext, img, sociallinks, videos },
@@ -20,10 +24,18 @@ const Hero = ({
           >
             {btntext}
           </button>
-          {/* <div className="">video</div>
-          <div className="">social</div> */}
+          <div className="grid items-center gap-5 md:gap-3 absolute top-[33vh] lg:top-[27vh] left-[11%] xl:left-0 w-auto h-auto">
+            {videos?.map((video, i) => (
+              <Clips key={i} imgsrc={video.imgsrc} clip={video.clip} />
+            ))}
+          </div>
+          <div className="grid items-center absolute top-[33vh] lg:top-[27vh] right-0 gap-3">
+            {sociallinks?.map((link, i) => (
+              <SocialLink key={i} icon={link.icon} />
+            ))}
+          </div>
         </div>
-        <div className="">
+        <div className="flex items-center">
           <img
             src={img}
             alt="hero-img/img"
