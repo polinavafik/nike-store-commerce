@@ -1,12 +1,13 @@
 import { Hero, Sales } from "./components";
-import { heroapi } from "./data/data";
+import { heroapi, popularsales, topratesales } from "./data/data";
 
 const App = () => {
   return (
     <>
       <main>
         <Hero heroapi={heroapi} />
-        <Sales />
+        <Sales endpoint={popularsales} />
+        <Sales endpoint={topratesales} />
       </main>
     </>
   );
