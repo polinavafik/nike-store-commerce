@@ -42,6 +42,7 @@
       rgb(27, 76, 224) 85.5%
     );
   }
+
   .bg-theme-cart {
     @apply bg-gradient-to-b from-slate-900 to-gray-900;
   }
