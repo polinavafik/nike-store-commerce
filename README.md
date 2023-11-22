@@ -1,1 +1,1 @@
-- [DEMO LINK](https://polinavafik.github.io/nike-store-commerce/)
+- [DEMO LINK](https://nike-store-commerce-delta.vercel.app/)
