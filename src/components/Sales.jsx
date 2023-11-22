@@ -2,10 +2,10 @@
 import Item from "./utils/Item";
 import Title from "./utils/Title";
 
-const Sales = ({ ifExists, endpoint: { title, items } }) => {
+const Sales = ({ ifExists, content: { title, items } }) => {
   return (
     <>
-      <div className="nike-container">
+      <section className="nike-container">
         <Title title={title} />
         <div
           className={`grid items-center justify-items-center gap-7 lg:gap-5 mt-7 ${
@@ -18,7 +18,7 @@ const Sales = ({ ifExists, endpoint: { title, items } }) => {
             <Item {...item} key={i} ifExists={ifExists} />
           ))}
         </div>
-      </div>
+      </section>
     </>
   );
 };

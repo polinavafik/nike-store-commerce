@@ -43,7 +43,7 @@
     );
   }
   .bg-theme-cart {
-    @apply bg-gradient-to-b from-slate-900 to-gray-900 shadow-sm shadow-gray-900;
+    @apply bg-gradient-to-b from-slate-900 to-gray-900;
   }
 
   /* Clip-path */

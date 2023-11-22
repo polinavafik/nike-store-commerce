@@ -381,6 +381,6 @@ export {
   story,
   sneaker,
   highlight,
-  popularsales,
   topratesales,
+  popularsales,
 };

@@ -1,24 +1,36 @@
-import { FlexContent, Hero, Sales, Stories } from "./components";
+import {
+  Cart,
+  FlexContent,
+  Footer,
+  Hero,
+  Header,
+  Sales,
+  Stories,
+} from "./components";
 import {
   heroapi,
   popularsales,
   topratesales,
-  sneaker,
   highlight,
+  sneaker,
   story,
-} from "./data/data";
+  footerAPI,
+} from "./data/data.js";
 
 const App = () => {
   return (
     <>
+      <Header />
+      <Cart />
       <main className="flex flex-col gap-16 relative">
         <Hero heroapi={heroapi} />
-        <Sales endpoint={popularsales} ifExists />
-        <FlexContent endpoint={highlight} ifExists />
-        <Sales endpoint={topratesales} />
-        <FlexContent endpoint={sneaker} />
+        <Sales content={popularsales} ifExists />
+        <FlexContent content={highlight} ifExists />
+        <Sales content={topratesales} />
+        <FlexContent content={sneaker} />
         <Stories story={story} />
       </main>
+      <Footer footerAPI={footerAPI} />
     </>
   );
 };
