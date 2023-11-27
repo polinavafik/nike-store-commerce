@@ -7,7 +7,7 @@ const initialState = {
     ? JSON.parse(localStorage.getItem("cart"))
     : [], // Let Suppose Database
   cartTotalAmount: 0,
-  cartTotalQantity: 0,
+  cartTotalQuantity: 0,
 };
 
 const CartSlice = createSlice({
@@ -100,7 +100,7 @@ const CartSlice = createSlice({
       );
 
       state.cartTotalAmount = totalAmount;
-      state.cartTotalQantity = totalQTY;
+      state.cartTotalQuantity = totalQTY;
     },
   },
 });
@@ -120,6 +120,6 @@ export const selectCartState = state => state.cart.cartState;
 export const selectCartItems = state => state.cart.cartItems;
 
 export const selectTotalAmount = state => state.cart.cartTotalAmount;
-export const selectTotalQTY = state => state.cart.cartTotalQantity;
+export const selectTotalQTY = state => state.cart.cartTotalQuantity;
 
 export default CartSlice.reducer;

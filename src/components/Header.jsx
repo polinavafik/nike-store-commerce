@@ -1,23 +1,33 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTotalQTY, setOpenCart } from "../app/CartSlice.js";
+import { selectTotalFavQTY } from "../app/FavoritesSlice.js";
 
 import {
   HeartIcon,
-  MagnifyingGlassIcon,
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
+import { setOpenFavorites } from "../app/FavoritesSlice.js";
 
 const Header = () => {
   const [navScroll, setNavScroll] = useState(false);
   const dispatch = useDispatch();
   const totalQTY = useSelector(selectTotalQTY);
+  const totalFavQTY = useSelector(selectTotalFavQTY);
 
   const onCartToggle = () => {
     dispatch(
       setOpenCart({
         cartState: true,
+      })
+    );
+  };
+
+  const onFavoritesToggle = () => {
+    dispatch(
+      setOpenFavorites({
+        favoritesState: true,
       })
     );
   };
@@ -56,19 +66,27 @@ const Header = () => {
 
           <ul className="flex items-center justify-center gap-2">
             <li className="grid items-center">
-              <MagnifyingGlassIcon
-                className={`icon-style ${
-                  navScroll && "text-slate-900 transition-all duration-300"
-                }`}
-              />
-            </li>
+              <button
+                type="button"
+                onClick={onFavoritesToggle}
+                className="border-none outline-none active:scale-110 transition-all duration-300 relative"
+              >
+                <HeartIcon
+                  className={`icon-style ${
+                    navScroll && "text-slate-900 transition-all duration-300"
+                  }`}
+                />
 
-            <li className="grid items-center">
-              <HeartIcon
-                className={`icon-style ${
-                  navScroll && "text-slate-900 transition-all duration-300"
-                }`}
-              />
+                <div
+                  className={`absolute top-4 right-0 w-4 h-4 text-[0.65rem] leading-tight font-medium rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300 ${
+                    navScroll
+                      ? "bg-slate-900 text-slate-100 shadow-slate-900"
+                      : "bg-slate-100 text-slate-900 shadow-slate-100"
+                  }`}
+                >
+                  {totalFavQTY}
+                </div>
+              </button>
             </li>
 
             <li className="grid items-center">

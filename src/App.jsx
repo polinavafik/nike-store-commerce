@@ -7,6 +7,7 @@ import {
   Sales,
   Stories,
 } from "./components";
+import Favorites from "./components/Favorites.jsx";
 import {
   heroapi,
   popularsales,
@@ -22,6 +23,7 @@ const App = () => {
     <>
       <Header />
       <Cart />
+      <Favorites />
       <main className="flex flex-col gap-16 relative">
         <Hero heroapi={heroapi} />
         <Sales content={popularsales} ifExists />

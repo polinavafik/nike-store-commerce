@@ -1,8 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
 
-import { StarIcon, ShoppingBagIcon } from "@heroicons/react/24/solid";
+import {
+  StarIcon,
+  ShoppingBagIcon,
+  HeartIcon,
+} from "@heroicons/react/24/solid";
 import { setAddItemToCart, setOpenCart } from "../../app/CartSlice";
+import { toggleToFavorites } from "../../app/FavoritesSlice";
 
 const Item = ({
   ifExists,
@@ -16,7 +21,6 @@ const Item = ({
   rating,
   price,
 }) => {
-  //   console.log(id)
   const dispatch = useDispatch();
 
   const onAddToCart = () => {
@@ -31,6 +35,12 @@ const Item = ({
         cartState: true,
       })
     );
+  };
+
+  const onAddToFav = () => {
+    const item = { id, title, text, img, color, shadow, price };
+
+    dispatch(toggleToFavorites(item));
   };
 
   return (
@@ -73,6 +83,14 @@ const Item = ({
               onClick={() => onAddToCart()}
             >
               <ShoppingBagIcon className="icon-style text-slate-900" />
+            </button>
+
+            <button
+              type="button"
+              className="bg-white/90 blur-effect-theme button-theme p-0.5"
+              onClick={() => onAddToFav()}
+            >
+              <HeartIcon className="icon-style text-slate-900 p-[2px]" />
             </button>
 
             <button
