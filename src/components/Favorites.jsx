@@ -5,17 +5,23 @@ import {
   selectFavoritesItems,
   setCloseFavorites,
   clearFavorites,
+  setTotalFav,
 } from "../app/FavoritesSlice.js";
 
 import FavoritesEmpty from "./favorites/FavoritesEmpty";
 import FavoritesItem from "./favorites/FavoritesItem";
 import FavoritesTop from "./favorites/FavoritesTop.jsx";
+import { useEffect } from "react";
 
 const Favorites = () => {
   const dispatch = useDispatch();
   const ifFavoritesState = useSelector(selectFavoritesState);
   const favoritesItems = useSelector(selectFavoritesItems);
   const totalFavQTY = useSelector(selectTotalFavQTY);
+
+  useEffect(() => {
+    dispatch(setTotalFav());
+  }, [favoritesItems, dispatch]);
 
   const onFavoriteToggle = () => {
     dispatch(

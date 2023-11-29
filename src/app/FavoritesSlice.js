@@ -16,9 +16,11 @@ const FavoritesSlice = createSlice({
     setOpenFavorites: (state, action) => {
       state.favoritesState = action.payload.favoritesState;
     },
+
     setCloseFavorites: (state, action) => {
       state.favoritesState = action.payload.favoritesState;
     },
+
     toggleToFavorites: (state, action) => {
       const itemIndex = state.favoritesItems.findIndex(
         item => item.id === action.payload.id
@@ -40,10 +42,36 @@ const FavoritesSlice = createSlice({
       state.favoritesTotalQuantity = state.favoritesItems.length;
       localStorage.setItem("favorites", JSON.stringify(state.favoritesItems));
     },
+
     clearFavorites: state => {
       state.favoritesItems = [];
       toast.success(`Favorites cleared`);
       localStorage.setItem("favorites", JSON.stringify(state.favoritesItems));
+    },
+
+    setGetTotals: state => {
+      let { totalAmount, totalQTY } = state.cartItems.reduce(
+        (cartTotal, cartItem) => {
+          const { price, cartQuantity } = cartItem;
+          const totalPrice = price * cartQuantity;
+
+          cartTotal.totalAmount += totalPrice;
+          cartTotal.totalQTY += cartQuantity;
+
+          return cartTotal;
+        },
+        {
+          totalAmount: 0,
+          totalQTY: 0,
+        }
+      );
+
+      state.cartTotalAmount = totalAmount;
+      state.cartTotalQuantity = totalQTY;
+    },
+
+    setTotalFav: state => {
+      state.favoritesTotalQuantity = state.favoritesItems.length;
     },
   },
 });
@@ -53,6 +81,7 @@ export const {
   setOpenFavorites,
   toggleToFavorites,
   clearFavorites,
+  setTotalFav,
 } = FavoritesSlice.actions;
 
 export const selectFavoritesState = state => state.favorites.favoritesState;
